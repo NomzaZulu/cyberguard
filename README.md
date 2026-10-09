@@ -6,7 +6,7 @@
 
 ## Demo
 
-**Dashboard:** https://cyber3-1-lilac.vercel.app/
+**Dashboard:** https://cyberguardvaultx.vercel.app/
 
 The dashboard is a static frontend hosted on Vercel. The Account Takeover and Digital Impersonation APIs are Python serverless functions on the same deployment. Phishing inference is sent to the configured public Hugging Face Space, `saswatpatra/cyberguard_phishing`.
 
