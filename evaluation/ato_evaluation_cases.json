@@ -1,0 +1,2153 @@
+{
+  "dataset_name": "CyberGuard ATO Controlled Evaluation Set v1",
+  "dataset_type": "synthetic controlled scenario validation",
+  "warning": "These cases are authored test scenarios for engineering validation. Metrics must not be presented as real-world production accuracy or independent benchmark performance.",
+  "organisation": "Acme Corporation",
+  "organisation_domain": "acme-corp.com",
+  "profiles": [
+    {
+      "user_id": "eval001",
+      "normal_locations": "Bhubaneswar",
+      "known_devices": "Chrome-Windows"
+    },
+    {
+      "user_id": "eval002",
+      "normal_locations": "Cuttack",
+      "known_devices": "Edge-Windows"
+    },
+    {
+      "user_id": "eval003",
+      "normal_locations": "Bhubaneswar",
+      "known_devices": "Safari-Mac"
+    },
+    {
+      "user_id": "eval004",
+      "normal_locations": "Delhi",
+      "known_devices": "Chrome-Android"
+    },
+    {
+      "user_id": "eval005",
+      "normal_locations": "Mumbai",
+      "known_devices": "Edge-Windows"
+    },
+    {
+      "user_id": "eval006",
+      "normal_locations": "Pune",
+      "known_devices": "Chrome-Mac"
+    },
+    {
+      "user_id": "eval007",
+      "normal_locations": "Kolkata",
+      "known_devices": "Safari-iPhone"
+    },
+    {
+      "user_id": "eval008",
+      "normal_locations": "Hyderabad",
+      "known_devices": "Chrome-Linux"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "ATO-A01",
+      "expected_label": "malicious",
+      "expected_detector": "Multiple Failed Login Attempts",
+      "description": "Six failed logins in a ten-minute window",
+      "events": [
+        {
+          "timestamp": "2026-10-01T09:00:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-01T09:01:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-01T09:02:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-01T09:03:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-01T09:04:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-01T09:05:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.20",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A03",
+      "expected_label": "malicious",
+      "expected_detector": "Password Spraying",
+      "description": "One source IP targets five accounts with failed logins",
+      "events": [
+        {
+          "timestamp": "2026-10-03T09:00:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.40",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-03T09:01:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.40",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-03T09:02:00",
+          "user_id": "eval003",
+          "login_status": "failed",
+          "ip_address": "203.0.113.40",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-03T09:03:00",
+          "user_id": "eval004",
+          "login_status": "failed",
+          "ip_address": "203.0.113.40",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-03T09:04:00",
+          "user_id": "eval005",
+          "login_status": "failed",
+          "ip_address": "203.0.113.40",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A05",
+      "expected_label": "malicious",
+      "expected_detector": "Unusual Login Location",
+      "description": "Known user authenticates from an unseen location",
+      "events": [
+        {
+          "timestamp": "2026-10-05T09:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "203.0.113.60",
+          "location": "Foreign City",
+          "device": "Safari-Mac",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A07",
+      "expected_label": "malicious",
+      "expected_detector": "Unknown / New Device",
+      "description": "Known user authenticates from a new device",
+      "events": [
+        {
+          "timestamp": "2026-10-07T09:00:00",
+          "user_id": "eval005",
+          "login_status": "success",
+          "ip_address": "198.51.100.11",
+          "location": "Mumbai",
+          "device": "Unknown-Device-0",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A09",
+      "expected_label": "malicious",
+      "expected_detector": "Suspicious Session Activity",
+      "description": "Privileged action occurs inside a session",
+      "events": [
+        {
+          "timestamp": "2026-10-09T09:00:00",
+          "user_id": "eval007",
+          "login_status": "success",
+          "ip_address": "203.0.113.70",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "login_success",
+          "session_id": "s-0"
+        },
+        {
+          "timestamp": "2026-10-09T09:01:00",
+          "user_id": "eval007",
+          "login_status": "success",
+          "ip_address": "203.0.113.70",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "privileged_action",
+          "session_id": "s-0"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A11",
+      "expected_label": "malicious",
+      "expected_detector": "Sudden Account Behaviour Change",
+      "description": "Recent activity changes across failures, IPs, location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-11T09:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-12T09:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-13T09:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-14T09:01:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.80",
+          "location": "Foreign City",
+          "device": "Unknown-0",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-14T09:02:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.81",
+          "location": "Foreign City",
+          "device": "Unknown-0",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-14T09:03:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "203.0.113.82",
+          "location": "Foreign City",
+          "device": "Unknown-0",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A02",
+      "expected_label": "malicious",
+      "expected_detector": "Multiple Failed Login Attempts",
+      "description": "Six failed logins in a ten-minute window",
+      "events": [
+        {
+          "timestamp": "2026-10-02T09:00:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-02T09:01:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-02T09:02:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-02T09:03:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-02T09:04:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-02T09:05:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.21",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A04",
+      "expected_label": "malicious",
+      "expected_detector": "Password Spraying",
+      "description": "One source IP targets five accounts with failed logins",
+      "events": [
+        {
+          "timestamp": "2026-10-04T09:00:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "203.0.113.41",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-04T09:01:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.41",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-04T09:02:00",
+          "user_id": "eval003",
+          "login_status": "failed",
+          "ip_address": "203.0.113.41",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-04T09:03:00",
+          "user_id": "eval004",
+          "login_status": "failed",
+          "ip_address": "203.0.113.41",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-04T09:04:00",
+          "user_id": "eval005",
+          "login_status": "failed",
+          "ip_address": "203.0.113.41",
+          "location": "Unknown City",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A06",
+      "expected_label": "malicious",
+      "expected_detector": "Unusual Login Location",
+      "description": "Known user authenticates from an unseen location",
+      "events": [
+        {
+          "timestamp": "2026-10-06T09:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "203.0.113.61",
+          "location": "Foreign City",
+          "device": "Chrome-Android",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A08",
+      "expected_label": "malicious",
+      "expected_detector": "Unknown / New Device",
+      "description": "Known user authenticates from a new device",
+      "events": [
+        {
+          "timestamp": "2026-10-08T09:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.11",
+          "location": "Pune",
+          "device": "Unknown-Device-1",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A10",
+      "expected_label": "malicious",
+      "expected_detector": "Suspicious Session Activity",
+      "description": "Privileged action occurs inside a session",
+      "events": [
+        {
+          "timestamp": "2026-10-10T09:00:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "203.0.113.70",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "login_success",
+          "session_id": "s-1"
+        },
+        {
+          "timestamp": "2026-10-10T09:01:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "203.0.113.70",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "privileged_action",
+          "session_id": "s-1"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-A12",
+      "expected_label": "malicious",
+      "expected_detector": "Sudden Account Behaviour Change",
+      "description": "Recent activity changes across failures, IPs, location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-12T09:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-13T09:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-14T09:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.12",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success"
+        },
+        {
+          "timestamp": "2026-10-15T09:01:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.81",
+          "location": "Foreign City",
+          "device": "Unknown-1",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-15T09:02:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "203.0.113.82",
+          "location": "Foreign City",
+          "device": "Unknown-1",
+          "session_action": "login_failed"
+        },
+        {
+          "timestamp": "2026-10-15T09:03:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "203.0.113.83",
+          "location": "Foreign City",
+          "device": "Unknown-1",
+          "session_action": "login_success"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B01",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Three failed attempts followed by a normal successful login",
+      "events": [
+        {
+          "timestamp": "2026-10-21T09:00:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-0-0"
+        },
+        {
+          "timestamp": "2026-10-21T09:07:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-0-1"
+        },
+        {
+          "timestamp": "2026-10-21T09:14:00",
+          "user_id": "eval001",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-0-2"
+        },
+        {
+          "timestamp": "2026-10-21T09:21:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "benign-0-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B02",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Normal logins from the users established location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-22T09:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-0"
+        },
+        {
+          "timestamp": "2026-10-22T17:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-1"
+        },
+        {
+          "timestamp": "2026-10-23T01:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-2"
+        },
+        {
+          "timestamp": "2026-10-23T09:00:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B03",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Stable account activity with no anomalous indicators",
+      "events": [
+        {
+          "timestamp": "2026-10-23T09:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-2-0"
+        },
+        {
+          "timestamp": "2026-10-23T15:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-2-1"
+        },
+        {
+          "timestamp": "2026-10-23T21:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-2-2"
+        },
+        {
+          "timestamp": "2026-10-24T03:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-2-3"
+        },
+        {
+          "timestamp": "2026-10-24T09:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-2-4"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B04",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Three failed attempts followed by a normal successful login",
+      "events": [
+        {
+          "timestamp": "2026-10-24T09:00:00",
+          "user_id": "eval004",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_failed",
+          "session_id": "benign-3-0"
+        },
+        {
+          "timestamp": "2026-10-24T09:07:00",
+          "user_id": "eval004",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_failed",
+          "session_id": "benign-3-1"
+        },
+        {
+          "timestamp": "2026-10-24T09:14:00",
+          "user_id": "eval004",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_failed",
+          "session_id": "benign-3-2"
+        },
+        {
+          "timestamp": "2026-10-24T09:21:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "benign-3-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B05",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Normal logins from the users established location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-25T09:00:00",
+          "user_id": "eval005",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Mumbai",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-0"
+        },
+        {
+          "timestamp": "2026-10-25T17:00:00",
+          "user_id": "eval005",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Mumbai",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-1"
+        },
+        {
+          "timestamp": "2026-10-26T01:00:00",
+          "user_id": "eval005",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Mumbai",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-2"
+        },
+        {
+          "timestamp": "2026-10-26T09:00:00",
+          "user_id": "eval005",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Mumbai",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "normal-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B06",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Stable account activity with no anomalous indicators",
+      "events": [
+        {
+          "timestamp": "2026-10-26T09:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Pune",
+          "device": "Chrome-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-5-0"
+        },
+        {
+          "timestamp": "2026-10-26T15:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Pune",
+          "device": "Chrome-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-5-1"
+        },
+        {
+          "timestamp": "2026-10-26T21:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Pune",
+          "device": "Chrome-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-5-2"
+        },
+        {
+          "timestamp": "2026-10-27T03:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Pune",
+          "device": "Chrome-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-5-3"
+        },
+        {
+          "timestamp": "2026-10-27T09:00:00",
+          "user_id": "eval006",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Pune",
+          "device": "Chrome-Mac",
+          "session_action": "login_success",
+          "session_id": "stable-5-4"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B07",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Three failed attempts followed by a normal successful login",
+      "events": [
+        {
+          "timestamp": "2026-10-27T09:00:00",
+          "user_id": "eval007",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "login_failed",
+          "session_id": "benign-6-0"
+        },
+        {
+          "timestamp": "2026-10-27T09:07:00",
+          "user_id": "eval007",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "login_failed",
+          "session_id": "benign-6-1"
+        },
+        {
+          "timestamp": "2026-10-27T09:14:00",
+          "user_id": "eval007",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "login_failed",
+          "session_id": "benign-6-2"
+        },
+        {
+          "timestamp": "2026-10-27T09:21:00",
+          "user_id": "eval007",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Kolkata",
+          "device": "Safari-iPhone",
+          "session_action": "login_success",
+          "session_id": "benign-6-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B08",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Normal logins from the users established location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-28T09:00:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "login_success",
+          "session_id": "normal-0"
+        },
+        {
+          "timestamp": "2026-10-28T17:00:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "login_success",
+          "session_id": "normal-1"
+        },
+        {
+          "timestamp": "2026-10-29T01:00:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "login_success",
+          "session_id": "normal-2"
+        },
+        {
+          "timestamp": "2026-10-29T09:00:00",
+          "user_id": "eval008",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Hyderabad",
+          "device": "Chrome-Linux",
+          "session_action": "login_success",
+          "session_id": "normal-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B09",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Stable account activity with no anomalous indicators",
+      "events": [
+        {
+          "timestamp": "2026-10-29T09:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "stable-8-0"
+        },
+        {
+          "timestamp": "2026-10-29T15:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "stable-8-1"
+        },
+        {
+          "timestamp": "2026-10-29T21:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "stable-8-2"
+        },
+        {
+          "timestamp": "2026-10-30T03:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "stable-8-3"
+        },
+        {
+          "timestamp": "2026-10-30T09:00:00",
+          "user_id": "eval001",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Chrome-Windows",
+          "session_action": "login_success",
+          "session_id": "stable-8-4"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B10",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Three failed attempts followed by a normal successful login",
+      "events": [
+        {
+          "timestamp": "2026-10-30T09:00:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-9-0"
+        },
+        {
+          "timestamp": "2026-10-30T09:07:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-9-1"
+        },
+        {
+          "timestamp": "2026-10-30T09:14:00",
+          "user_id": "eval002",
+          "login_status": "failed",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_failed",
+          "session_id": "benign-9-2"
+        },
+        {
+          "timestamp": "2026-10-30T09:21:00",
+          "user_id": "eval002",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Cuttack",
+          "device": "Edge-Windows",
+          "session_action": "login_success",
+          "session_id": "benign-9-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B11",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Normal logins from the users established location and device",
+      "events": [
+        {
+          "timestamp": "2026-10-31T09:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "normal-0"
+        },
+        {
+          "timestamp": "2026-10-31T17:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "normal-1"
+        },
+        {
+          "timestamp": "2026-11-01T01:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "normal-2"
+        },
+        {
+          "timestamp": "2026-11-01T09:00:00",
+          "user_id": "eval003",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Bhubaneswar",
+          "device": "Safari-Mac",
+          "session_action": "login_success",
+          "session_id": "normal-3"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    },
+    {
+      "case_id": "ATO-B12",
+      "expected_label": "benign",
+      "expected_detector": "None",
+      "description": "Stable account activity with no anomalous indicators",
+      "events": [
+        {
+          "timestamp": "2026-11-01T09:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "stable-11-0"
+        },
+        {
+          "timestamp": "2026-11-01T15:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "stable-11-1"
+        },
+        {
+          "timestamp": "2026-11-01T21:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "stable-11-2"
+        },
+        {
+          "timestamp": "2026-11-02T03:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "stable-11-3"
+        },
+        {
+          "timestamp": "2026-11-02T09:00:00",
+          "user_id": "eval004",
+          "login_status": "success",
+          "ip_address": "198.51.100.10",
+          "location": "Delhi",
+          "device": "Chrome-Android",
+          "session_action": "login_success",
+          "session_id": "stable-11-4"
+        }
+      ],
+      "profiles": [
+        {
+          "user_id": "eval001",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Chrome-Windows"
+        },
+        {
+          "user_id": "eval002",
+          "normal_locations": "Cuttack",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval003",
+          "normal_locations": "Bhubaneswar",
+          "known_devices": "Safari-Mac"
+        },
+        {
+          "user_id": "eval004",
+          "normal_locations": "Delhi",
+          "known_devices": "Chrome-Android"
+        },
+        {
+          "user_id": "eval005",
+          "normal_locations": "Mumbai",
+          "known_devices": "Edge-Windows"
+        },
+        {
+          "user_id": "eval006",
+          "normal_locations": "Pune",
+          "known_devices": "Chrome-Mac"
+        },
+        {
+          "user_id": "eval007",
+          "normal_locations": "Kolkata",
+          "known_devices": "Safari-iPhone"
+        },
+        {
+          "user_id": "eval008",
+          "normal_locations": "Hyderabad",
+          "known_devices": "Chrome-Linux"
+        }
+      ]
+    }
+  ]
+}

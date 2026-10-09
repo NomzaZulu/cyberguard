@@ -1,0 +1,371 @@
+{
+  "suite": "CyberGuard Evaluation Suite v2",
+  "scope": "Independent evaluation of existing detection services; production code is not modified by the benchmark.",
+  "digital_impersonation": {
+    "module": "Digital Impersonation",
+    "evaluation_type": "labelled bundled dataset",
+    "dataset": "cyberguard_impersonation_messages.csv",
+    "total_messages": 120,
+    "scored_messages": 100,
+    "binary_metrics": {
+      "samples": 100,
+      "tp": 66,
+      "tn": 19,
+      "fp": 1,
+      "fn": 14,
+      "accuracy": 0.85,
+      "precision": 0.9851,
+      "recall": 0.825,
+      "f1": 0.898,
+      "false_positive_rate": 0.05
+    },
+    "borderline": {
+      "total": 20,
+      "flagged": 3
+    },
+    "risk_distribution": {
+      "high": 57,
+      "medium": 13,
+      "low": 4
+    }
+  },
+  "account_takeover": {
+    "module": "Account Takeover",
+    "evaluation_type": "synthetic controlled scenario validation",
+    "dataset": "ato_evaluation_cases.json",
+    "warning": "These cases are authored test scenarios for engineering validation. Metrics must not be presented as real-world production accuracy or independent benchmark performance.",
+    "cases": 24,
+    "binary_metrics": {
+      "samples": 24,
+      "tp": 12,
+      "tn": 12,
+      "fp": 0,
+      "fn": 0,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "per_detector": {
+      "Multiple Failed Login Attempts": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      },
+      "Password Spraying": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      },
+      "Sudden Account Behaviour Change": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      },
+      "Suspicious Session Activity": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      },
+      "Unknown / New Device": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      },
+      "Unusual Login Location": {
+        "cases": 2,
+        "detected": 2,
+        "detection_rate": 1.0
+      }
+    },
+    "case_results": [
+      {
+        "case_id": "ATO-A01",
+        "expected_label": "malicious",
+        "expected_detector": "Multiple Failed Login Attempts",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH"
+        ],
+        "triggered_detectors": [
+          "Multiple Failed Login Attempts",
+          "Suspicious Session Activity",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A03",
+        "expected_label": "malicious",
+        "expected_detector": "Password Spraying",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH",
+          "MEDIUM"
+        ],
+        "triggered_detectors": [
+          "Password Spraying",
+          "Unknown / New Device",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A05",
+        "expected_label": "malicious",
+        "expected_detector": "Unusual Login Location",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A07",
+        "expected_label": "malicious",
+        "expected_detector": "Unknown / New Device",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Unknown / New Device"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A09",
+        "expected_label": "malicious",
+        "expected_detector": "Suspicious Session Activity",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Suspicious Session Activity"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A11",
+        "expected_label": "malicious",
+        "expected_detector": "Sudden Account Behaviour Change",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH"
+        ],
+        "triggered_detectors": [
+          "Sudden Account Behaviour Change",
+          "Suspicious Session Activity",
+          "Unknown / New Device",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A02",
+        "expected_label": "malicious",
+        "expected_detector": "Multiple Failed Login Attempts",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH"
+        ],
+        "triggered_detectors": [
+          "Multiple Failed Login Attempts",
+          "Suspicious Session Activity",
+          "Unknown / New Device",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A04",
+        "expected_label": "malicious",
+        "expected_detector": "Password Spraying",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH",
+          "MEDIUM"
+        ],
+        "triggered_detectors": [
+          "Password Spraying",
+          "Unknown / New Device",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A06",
+        "expected_label": "malicious",
+        "expected_detector": "Unusual Login Location",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A08",
+        "expected_label": "malicious",
+        "expected_detector": "Unknown / New Device",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Unknown / New Device"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A10",
+        "expected_label": "malicious",
+        "expected_detector": "Suspicious Session Activity",
+        "flagged": true,
+        "risk_levels": [
+          "LOW"
+        ],
+        "triggered_detectors": [
+          "Suspicious Session Activity"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-A12",
+        "expected_label": "malicious",
+        "expected_detector": "Sudden Account Behaviour Change",
+        "flagged": true,
+        "risk_levels": [
+          "HIGH"
+        ],
+        "triggered_detectors": [
+          "Sudden Account Behaviour Change",
+          "Suspicious Session Activity",
+          "Unknown / New Device",
+          "Unusual Login Location"
+        ],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B01",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B02",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B03",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B04",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B05",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B06",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B07",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B08",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B09",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B10",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B11",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      },
+      {
+        "case_id": "ATO-B12",
+        "expected_label": "benign",
+        "expected_detector": "None",
+        "flagged": false,
+        "risk_levels": [],
+        "triggered_detectors": [],
+        "expected_detector_hit": true
+      }
+    ]
+  },
+  "phishing": {
+    "module": "Phishing",
+    "status": "skipped",
+    "reason": "Phishing benchmark was skipped with --skip-phishing."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "functions": {
+    "api/account_takeover.py": {
+      "memory": 1024,
+      "maxDuration": 60,
+      "includeFiles": "account_takeover/**,security_core/**"
+    },
+    "api/digital_impersonation.py": {
+      "memory": 1024,
+      "maxDuration": 60,
+      "includeFiles": "digital_impersonation/**,security_core/**"
+    }
+  }
+}
