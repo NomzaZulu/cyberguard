@@ -1,302 +1,215 @@
-# CyberGuard 🛡️
+# CyberGuard
 
-**AI-powered cyber threat intelligence dashboard** — phishing message / website / QR analysis plus two full behavioural detection engines: **Account Takeover (ATO)** with per-user risk scoring, and **Digital Impersonation** with per-message risk scoring.
+**CyberGuard is an organisation-focused cybersecurity dashboard** that brings together three separate detection modules: phishing analysis, account-takeover risk analysis, and digital-impersonation analysis. It presents findings, risk levels, evidence, and suggested response actions in one interface.
 
-Built as a single organisation-security platform: a static frontend plus two Python serverless APIs on Vercel, with phishing inference remaining on the connected Hugging Face Space.
+> **Important scope note:** CyberGuard is a prototype. Its modules use different detection approaches and evaluation datasets. It should not be described as a fully autonomous security operations centre, a universal threat detector, or a system with one overall accuracy score.
 
----
+## Demo
 
-## Live Demo
+**Dashboard:** https://cyber3-1-lilac.vercel.app/
 
-**https://cyberguard-sigma-woad.vercel.app**
+The dashboard is a static frontend hosted on Vercel. The Account Takeover and Digital Impersonation APIs are Python serverless functions on the same deployment. Phishing inference is sent to the configured public Hugging Face Space, `saswatpatra/cyberguard_phishing`.
 
-The dashboard and Python APIs are served from the same deployment. Phishing inference is connected directly to the configured Hugging Face Space.
+Availability of the deployed website does not by itself guarantee that every API or the external inference Space is reachable at all times.
 
----
+## What CyberGuard does
 
-## Features
+### 1. Phishing analysis
 
-### 1. Phishing Analysis (message / URL / QR)
-- **Message analysis** — paste any SMS, email or chat text and get a phishing verdict.
-- **Website analysis** — submit a URL for reputation and phishing checks.
-- **QR code analysis** — upload a QR image and decode it to check the embedded link.
-- Powered by the Gradio inference Space [`saswatpatra/cyberguard_phishing`](https://huggingface.co/spaces/saswatpatra/cyberguard_phishing), called client-side from the browser through `@gradio/client`.
+The frontend connects to the `saswatpatra/cyberguard_phishing` Gradio Space for these analysis modes:
 
-### 2. Account Takeover Detection Engine
-Six behavioural detectors run over login telemetry, fused by a weighted risk engine into a single score and a `LOW` / `MEDIUM` / `HIGH` verdict per user.
+- **Message analysis:** analyse pasted message text, such as an email, SMS, or chat message.
+- **Website analysis:** submit a website URL for analysis.
+- **QR analysis:** upload a QR-code image for decoding and analysis of its content.
 
-| # | Detector | What it catches |
-|---|----------|-----------------|
-| 1 | Multiple Failed Login Attempts | Password guessing / brute force from a single source |
-| 2 | Password Spraying | One password tried against many accounts from one IP |
-| 3 | Unusual Login Location | Login from a location outside the user's normal baseline |
-| 4 | Unknown / New Device | First-seen device, or a device outside the user's known set |
-| 5 | Suspicious Session Activity | Session actions inconsistent with a normal login flow |
-| 6 | Sudden Account Behaviour Change | Abrupt shift in a user's usual location, device or login pattern |
+The configured Gradio API names are `/analyze_message`, `/analyze_website`, and `/scan_qr`. The trained phishing inference service is hosted separately from this repository; its model architecture, training details, and training metrics should only be stated when supported by the model's own training records.
 
-**Risk engine**
-- Weighted detector contributions, plus bonuses for **evidence volume**, **repetition** and **cross-detector correlation**.
-- Thresholds: `LOW < 30 ≤ MEDIUM < 70 ≤ HIGH`.
-- Every flagged user is returned with exact detector evidence, an attack type, confidence, recommended response actions, and a unified incident record. Password-spraying evidence is attributed to each targeted account.
+### 2. Account Takeover (ATO) analysis
 
-### 3. Digital Impersonation Detection Engine
-Six content detectors run over reported messages (SMS, email, chat, social, QR), fused into a single score and a `LOW` / `MEDIUM` / `HIGH` verdict per message.
+The ATO module analyses authentication-event data against user profile baselines. It uses six behavioural detectors:
 
-| # | Detector | What it catches |
-|---|----------|-----------------|
-| 1 | Authority Impersonation | A sender posing as police, tax, court, government or a regulator |
-| 2 | Executive Impersonation | A sender posing as a CEO, director, HR, payroll or university authority |
-| 3 | Brand Impersonation | A message claiming a bank or brand, or sent from a lookalike domain |
-| 4 | Urgency & Pressure Tactics | Coercive deadlines and "do not tell anyone" instructions that block verification |
-| 5 | Threatening Or Extortion Language | Legal, policing or financial threats used to force compliance |
-| 6 | Credential Harvesting Via Impersonation | A trusted-identity claim combined with a request for an OTP, PIN, password or card details |
+1. Multiple failed login attempts
+2. Password spraying
+3. Unusual login location
+4. Unknown or new device
+5. Suspicious session activity
+6. Sudden account-behaviour change
 
-**Risk engine**
-- Weighted detector contributions plus bonuses for **evidence volume**, **repetition** and **cross-detector correlation** — an identity + pressure + credential-request chain scores highest.
-- Thresholds: `LOW < 30 ≤ MEDIUM < 70 ≤ HIGH`.
-- Returns each flagged message with the detectors that fired, human-readable evidence, attack category, confidence, recommended response actions, the original message text, and a **campaign view** grouping detections by sender infrastructure.
+The engine combines detector evidence into a risk score and returns risk classifications, explanations/evidence, and recommended response actions. This module is a **custom behavioural and rule-based risk engine**, not a separately trained machine-learning model.
 
----
+### 3. Digital Impersonation analysis
 
-## Tech Stack
+The Digital Impersonation module analyses reported messages and their sender/claimed-identity context. It uses six contextual detectors:
 
-| Layer | Choice |
-|-------|--------|
-| Frontend | Vanilla HTML / CSS / JS (no build step) |
-| ATO engine | Python 3, pandas, custom risk scoring |
-| Impersonation engine | Python 3, pandas, word-boundary keyword matching, custom risk scoring |
-| API (ATO) | FastAPI, deployed as a Vercel Python serverless function |
-| API (impersonation) | FastAPI, deployed as a Vercel Python serverless function |
-| Shared incident layer | Python `security_core/unified_incident.py` |
-| Hosting | Vercel (static + Python serverless APIs) |
+1. Authority impersonation
+2. Executive impersonation
+3. Brand impersonation
+4. Urgency and pressure tactics
+5. Threatening or extortion language
+6. Credential harvesting through impersonation
 
----
+Its contextual rules and weighted risk engine produce per-message risk assessments and supporting indicators. The service can also group related detections into campaign views. This module is a **custom rule-based/contextual engine**, not a separately trained machine-learning model.
 
-## Project Structure
+## How results are produced
 
-```
+The modules remain separate because they analyse different kinds of input:
+
+- **Phishing:** remote inference through the configured Hugging Face Space.
+- **Account Takeover:** behavioural analysis of login events and user baselines.
+- **Digital Impersonation:** contextual analysis of messages, sender information, and claimed identities.
+
+Their outputs are presented through a common dashboard and incident/reporting format. Risk scores from different modules should not be assumed to be directly comparable, and their evaluation metrics should not be averaged into a single CyberGuard accuracy figure.
+
+## Technology stack
+
+| Area | Technology |
+|---|---|
+| Frontend | HTML, CSS, vanilla JavaScript |
+| Phishing inference | Hugging Face Spaces / Gradio client |
+| ATO and impersonation APIs | Python, FastAPI, pandas |
+| Deployment | Vercel static hosting and Python serverless functions |
+| Reporting | Dashboard incident views and browser-generated PDF reporting |
+| Evaluation | Python benchmark scripts and labelled/synthetic test cases |
+
+No frontend build step is required for the static dashboard.
+
+## Project structure
+
+```text
 .
-├── index.html                     # Static dashboard shell
-├── style.css                      # Dashboard styling
-├── script.js                      # Frontend logic + Gradio client
-├── vercel.json                    # Serverless function config (framework preset disabled)
-├── requirements.txt               # Python deps for the ATO + impersonation functions
-├── package.json                   # Project metadata
-│
+├── index.html
+├── style.css
+├── script.js
+├── pdf-report.js
+├── vercel.json
+├── package.json
+├── requirements.txt
 ├── api/
-│   ├── account_takeover.py        # FastAPI app (POST /api/account_takeover)
-│   └── digital_impersonation.py   # FastAPI app (POST /api/digital_impersonation)
-│
+│   ├── account_takeover.py
+│   └── digital_impersonation.py
 ├── account_takeover/
-│   ├── account_takeover_engine.py # The six detectors
-│   ├── account_takeover_service.py# Pipeline: DataFrames -> JSON report
-│   └── risk_engine.py             # Scoring, bonuses, thresholds
-│
+│   ├── account_takeover_engine.py
+│   ├── account_takeover_service.py
+│   └── risk_engine.py
 ├── digital_impersonation/
-│   ├── digital_impersonation_engine.py # The six detectors + campaign grouping
-│   ├── digital_impersonation_service.py# Pipeline: DataFrames -> JSON report
-│   └── risk_engine.py             # Scoring, bonuses, thresholds
-│
-├── cyberguard_login_events.csv        # Sample ATO telemetry
-├── cyberguard_organisation_profiles.csv # Sample ATO user baselines
-├── cyberguard_impersonation_messages.csv # 120-message labelled evaluation set
-├── security_core/                 # Shared incident/risk conventions
-├── evaluation/                    # Local benchmark tooling
-├── test_api_local.py              # ATO API regression harness
-├── test_impersonation_local.py    # Impersonation API regression harness
-├── test_digital_impersonation_stress.py # Impersonation stress suite
-└── test_adversarial_inputs.py     # Cross-engine adversarial regression suite
+│   ├── digital_impersonation_engine.py
+│   ├── digital_impersonation_service.py
+│   └── risk_engine.py
+├── security_core/
+│   └── unified_incident.py
+├── cyberguard_login_events.csv
+├── cyberguard_organisation_profiles.csv
+├── cyberguard_impersonation_messages.csv
+├── evaluation/
+└── test_*.py / test_*.mjs
 ```
 
----
+The CSV files are sample/demo data. Do not treat them as live organisational telemetry or as proof of real-world detection performance.
 
-## Unified Incident Model
+## Evaluation and testing
 
-The three visible modules remain separate detection engines, but their outputs are normalised into a shared incident model containing:
+Evaluation is split by module because the data sources and methods differ.
 
-- incident ID and timestamp
-- module and severity
-- risk score and confidence
-- attack type
-- source and target
-- organisation context
-- evidence
-- recommended response actions
+- **Digital Impersonation:** `cyberguard_impersonation_messages.csv` contains labelled messages used by the bundled benchmark. The current benchmark scores the malicious and benign labels separately from the borderline cases. Results are engineering validation on this project dataset, not independent certification.
+- **Account Takeover:** `evaluation/ato_evaluation_cases.json` is a controlled synthetic scenario set covering the six detectors. Its metrics measure how the engine handles those authored scenarios; they are not real-world production accuracy. Keep this dataset unchanged when reproducing the current benchmark.
+- **Phishing:** `evaluation/phishing_benchmark.py` is intended to send labelled samples through the same remote Space used by the frontend. A valid accessible dataset source and an available Space/API are required. Do not report phishing metrics unless the run completes successfully and produces a report.
 
-This lets the dashboard, history and PDF reports use one security vocabulary without collapsing the three detection categories into one detector.
+Run the two local engine evaluations:
 
-## Validation
+```bash
+python evaluation/benchmark.py --skip-phishing
+```
 
-Run the local benchmark with:
+Attempt the remote phishing benchmark separately:
+
+```bash
+python evaluation/phishing_benchmark.py --samples 100
+```
+
+Run the unified benchmark, including the remote phishing step:
 
 ```bash
 python evaluation/benchmark.py
 ```
 
-Run adversarial regression checks with:
+The scripts write their generated report files under `evaluation/`. Review the report's status and warnings before quoting any metrics. Do not combine module metrics into a single score.
+
+### Regression tests
+
+Run the available local tests from the project root:
 
 ```bash
+python test_api_local.py
+python test_impersonation_local.py
+python test_digital_impersonation_stress.py
 python test_adversarial_inputs.py
 ```
 
-The benchmark currently evaluates the 120-message impersonation dataset and reports precision/recall/F1 against its malicious/benign labels, while borderline samples are reported separately.
+These tests exercise the code paths represented by each test file. Passing local tests does not establish production availability or real-world detection accuracy.
 
----
+## API reference
 
-## API
+The two Python APIs expose health checks and analysis endpoints.
 
-### `POST /api/account_takeover`
+### Account Takeover
 
-```jsonc
-{
-  "events": [
-    {
-      "timestamp": "2026-10-03T10:00:00",
-      "user_id": "user001",
-      "login_status": "failed",
-      "ip_address": "203.0.113.10",
-      "location": "Unknown City",
-      "device": "Chrome-Windows",
-      "session_action": "login_failed"
-    }
-  ],
-  "profiles": [
-    {
-      "user_id": "user001",
-      "normal_locations": "Bhubaneswar",
-      "known_devices": "Edge-Windows"
-    }
-  ]
-}
-```
+- `GET /api/account_takeover` — health check
+- `POST /api/account_takeover` — analyse authentication events and optional user profiles
 
-`profiles` is optional. Response:
+The POST request accepts an `events` array. Each event should include a `timestamp` and `user_id`; fields such as `login_status`, `ip_address`, `location`, `device`, and `session_action` provide additional evidence. An optional `profiles` array can provide each user's normal locations and known devices.
 
-```jsonc
-{
-  "success": true,
-  "type": "account_takeover",
-  "result": {
-    "summary": { "users_analyzed": 6, "accounts_flagged": 6, "high_risk": 2, "medium_risk": 4, "detection_events": 15 },
-    "users": [ /* per-user risk, verdict, detectors, evidence */ ]
-  }
-}
-```
+### Digital Impersonation
 
-`GET /api/account_takeover` returns a health check. Empty `events` returns `400`.
+- `GET /api/digital_impersonation` — health check
+- `POST /api/digital_impersonation` — analyse reported messages
 
-### `POST /api/digital_impersonation`
+The POST request accepts a `messages` array. Useful fields include `message_id`, `channel`, `sender_name`, `sender_domain`, `claimed_identity`, `claimed_role`, `claimed_organisation`, `message_text`, `context`, and `timestamp`.
 
-```jsonc
-{
-  "messages": [
-    {
-      "timestamp": "2026-10-03T09:30:00",
-      "message_id": "msg002",
-      "channel": "email",
-      "sender_domain": "sbi-netbanking-alert.xyz",
-      "claimed_identity": "SBI Customer Care",
-      "claimed_role": "security officer",
-      "claimed_organisation": "State Bank of India",
-      "message_text": "Your account will be suspended today. Confirm your OTP and net banking password.",
-      "context": "vendor reported a bank phishing email"
-    }
-  ]
-}
-```
+The API handlers also define a root route (`/`) for health and POST analysis. For exact request/response fields, refer to the corresponding API files and service implementations.
 
-Response:
+## Run the Python APIs locally
 
-```jsonc
-{
-  "success": true,
-  "type": "digital_impersonation",
-  "result": {
-    "summary": { "messages_analyzed": 6, "messages_flagged": 6, "high_risk": 6, "medium_risk": 0, "low_risk": 0, "detection_events": 21, "detector_types": 6 },
-    "messages": [ /* per-message risk, verdict, detectors, reasons, original text */ ],
-    "detections": [ /* individual detector events */ ],
-    "campaigns": [ /* detections grouped by sender infrastructure */ ]
-  }
-}
-```
-
-`GET /api/digital_impersonation` returns a health check. Empty `messages` returns `400`.
-
-### CSV columns
-
-**Events** — `timestamp` *(required)*, `user_id` *(required)*, `login_status`, `ip_address`, `location`, `device`, `session_action`. Optional `event_id` / `session_id` are synthesised when absent.
-
-**Profiles** — `user_id`, `normal_locations`, `known_devices`.
-
-### Impersonation CSV columns
-
-**Messages** — `message_id` *(required)*, `channel`, `sender_name`, `sender_domain`, `claimed_identity`, `claimed_role`, `claimed_organisation`, `message_text`, `context`, `timestamp`. `message_id` is synthesised when absent; the engine also reads the body plus the claimed identity/role/organisation together, so a scam described only in the identity field is still detected.
-
----
-
-## Running Locally
-
-### ATO engine only (CLI)
+Use Python 3.10 or newer, then install the dependencies:
 
 ```bash
-cd CyberGuard-main
-python -m account_takeover.account_takeover_engine
+python -m venv .venv
 ```
 
-Reads the two sample CSVs from the project root and prints every detector's output.
-
-### Impersonation engine only (CLI)
+Activate the virtual environment, then run:
 
 ```bash
-cd CyberGuard-main
-python -m digital_impersonation.digital_impersonation_engine
-```
-
-Runs a built-in sample through all six impersonation detectors.
-
-### ATO API
-
-```bash
-cd CyberGuard-main
 pip install -r requirements.txt
+```
+
+Start the APIs in separate terminals:
+
+```bash
 python -m uvicorn api.account_takeover:app --port 8000
 ```
 
-### Impersonation API
-
 ```bash
-cd CyberGuard-main
-python -m uvicorn api.digital_impersonation:app --port 8000
+python -m uvicorn api.digital_impersonation:app --port 8001
 ```
 
-### Static frontend
+The local API health checks are available at `http://127.0.0.1:8000/api/account_takeover` and `http://127.0.0.1:8001/api/digital_impersonation` respectively. The static frontend uses same-origin `/api/...` paths, so simply serving it on another port with `python -m http.server` will **not** automatically connect it to these separate API ports. Use the integrated Vercel deployment for the full application unless you configure a local reverse proxy or matching same-origin setup.
 
-```bash
-cd CyberGuard-main
-python -m http.server 5173
-```
+## Deployment notes
 
-Open `http://localhost:5173`. The dashboard calls `/api/account_takeover` and `/api/digital_impersonation` on its own origin, so serve the frontend and the API from the same origin (or use the CORS-enabled APIs on `http://localhost:8000`).
+The Vercel configuration declares two Python serverless functions:
 
-### Regression harnesses
+- `api/account_takeover.py`
+- `api/digital_impersonation.py`
 
-```bash
-cd CyberGuard-main
-python test_api_local.py            # Account takeover
-python test_impersonation_local.py  # Digital impersonation
-```
+The static frontend is served from the project root. The phishing module calls the public Hugging Face Space from the browser using the Gradio client; it is not served by either Python API in this repository. The current project does not define an `/api/analyze` phishing proxy, so deployment instructions should not refer to one.
 
-Both exit `0` when every case passes. The ATO harness covers the demo scenario, missing optional columns, empty payload, both path aliases and CORS preflight. The impersonation harness additionally asserts that **legitimate business messages are never classified high risk** and that repeated sender infrastructure is clustered into one campaign.
+## Limitations
 
----
+- Phishing inference depends on an external Hugging Face Space and its availability.
+- ATO and Digital Impersonation use custom rule/context-based logic; they are not independently trained ML models.
+- Bundled datasets are demo/evaluation inputs, not live feeds.
+- Evaluation results depend on the specific dataset and test cases. They do not establish production-wide accuracy.
+- This prototype provides analysis and recommendations; do not imply it automatically blocks accounts, quarantines email, or performs other response actions unless such integration is implemented and verified.
 
-## Deploying to Vercel
+## License
 
-1. From the project folder, authenticate the CLI once: `npx vercel login`.
-2. Deploy: `npx vercel deploy --prod --yes` (or `vercel --prod` against a linked GitHub repo).
-3. No environment variables are required — the Hugging Face Space is public. If you ever make it private or gated, add an `HF_TOKEN` variable (a read token for that Space); the serverless proxy connects anonymously until then.
-4. In the Vercel dashboard turn **off Deployment Protection** (Settings → Deployment Protection) so the URL is open to anyone — otherwise visitors hit a Vercel login wall.
-
-`vercel.json` pins `"framework": null` so Vercel treats the repo as a plain static + serverless project: `index.html`, `script.js` and `style.css` are served statically, and anything under `api/` becomes a serverless function. That means `/api/account_takeover` and `/api/analyze` resolve with no rewrite rules.
-
-Both endpoints live on the same domain as the frontend, so no CORS configuration or client-side URL change is needed in production.
+See the repository's existing license file.
